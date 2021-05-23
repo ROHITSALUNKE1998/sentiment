@@ -1,0 +1,8 @@
+for item in reviews:  
+        review = {
+        'product': soup.title.text.replace('Amazon.in:Customer reviews:','').strip(),
+        'title': item.find('a', {'data-hook': 'review-title'}).text.strip(),
+        'rating': float(item.find('i', {'data-hook': 'review-star-rating'}).text.replace('out of 5 stars', '').strip()),
+        'body': item.find('span', {'data-hook': 'review-body'}).text.strip(),
+        }
+        print(review)
