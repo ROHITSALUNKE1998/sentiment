@@ -3,8 +3,17 @@ from os import link
 from string import Template
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-driver = webdriver.Chrome()
+import os
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage ")
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+driver = webdriver.Chrome(execution_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+
 
 linkOption = input("Do you want to search product with link (yes/no): ")
 
